@@ -9,8 +9,8 @@ function App () {
   const [newQuote, setNewQuote] = useState({ quote: "", character: "" })
 
   const htmlData = data.map(quotes => {
-    return (<li>
-      <p>{quotes.quote} - <span>{quotes.character}</span></p>
+    return (<li >
+      <p>{quotes.quote} - <span className='colorCharacter'>{quotes.character}</span></p>
 
     </li>)
   })
@@ -32,14 +32,14 @@ function App () {
   return (
     <div className="App">
       <header>
-        <h1>Frases de Friends</h1>
+        <h1 className='titleStyle'>Frases de Friends</h1>
       </header>
       <main>
-        <ul>
+        <ul className="styleQuote">
           {htmlData}
         </ul>
-        <form>
-          <label>Añadir una nueva frase</label>
+        <form className='formStyle'>
+          <p>Añadir una nueva frase</p>
           <label htmlfor="quote">Frase</label>
           <input type="text" name="quote" id="quote" onChange={handleNewQuote}></input>
           <label htmlfor="character">Personaje</label>
