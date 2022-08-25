@@ -14,12 +14,14 @@
 }
 .formStyle {
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 15px;
   flex-wrap: wrap;
-  max-width: 500px;
+  max-width: 550px;
   margin: 0 auto;
   color: #3cb3a1;
+  padding-bottom: 30px;
   p {
     text-align: center;
     width: 100%;
@@ -29,7 +31,9 @@
   button {
     margin: 0 auto;
     width: 50%;
-    padding: 5px;
+    padding:5px;
+    margin-top: 20px;
+    border-radius: 10px;
     background-color: #3cb3a1;
     border-style: none;
     color: azure;

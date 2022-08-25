@@ -39,8 +39,38 @@ function App () {
   return (
     <div className="App">
       <header>
+
         <h1 className='titleStyle'>Frases de Friends</h1>
+        <form className="formStyle">
+          <label htmlFor="character">
+            Filtrar por frase </label>
+          <input
+            type="text"
+            name="quote"
+            id="quote"
+          /* value={filterQuote}
+           onChange={handleFilterQuote}*/
+          />
+
+          <label htmlFor="character">
+            Filtrar por personaje </label>
+          <select
+            className=""
+          /* onChange={handleFilterCharacter}
+           value={filterCharac}*/
+          >
+            <option value="all">Todos</option>
+            <option value="Ross">Ross</option>
+            <option value="Monica">Monica</option>
+            <option value="Joey">Joey</option>
+            <option value="Phoebe">Phoebe</option>
+            <option value="Chandler">Chandler</option>
+            <option value="Rachel">Rachel</option>
+          </select>
+
+        </form>
       </header>
+
       <main>
         <ul className="styleQuote">
           {htmlData}
