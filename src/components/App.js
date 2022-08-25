@@ -1,16 +1,23 @@
 
 import '../styles/App.scss';
-import quotes from '../data/quotes.json';
-import { useState } from 'react';
+//import quotes from '../data/quotes.json';
+import { useState, useEffect } from 'react';
+import getDataApi from '../services/fetch';
 
 
 function App () {
-  const [data, setData] = useState(quotes);
+  const [data, setData] = useState([]);
   const [newQuote, setNewQuote] = useState({ quote: "", character: "" })
 
-  const htmlData = data.map((quotes, index) => {
+  useEffect(() => {
+    getDataApi().then((data) => {
+      setData(data);
+    });
+  }, []);
+
+  const htmlData = data.map((data, index) => {
     return (<li key={index} >
-      <p>{quotes.quote} - <span className='colorCharacter'>{quotes.character}</span></p>
+      <p>{data.quote} - <span className='colorCharacter'>{data.character}</span></p>
 
     </li>)
   })
@@ -40,9 +47,9 @@ function App () {
         </ul>
         <form className='formStyle'>
           <p>Añadir una nueva frase</p>
-          <label htmlfor="quote">Frase</label>
+          <label htmlFor="quote">Frase</label>
           <input type="text" name="quote" id="quote" value={newQuote.quote} onChange={handleNewQuote}></input>
-          <label htmlfor="character">Personaje</label>
+          <label htmlFor="character">Personaje</label>
           <input type="text" name="character" id="character" value={newQuote.character} onChange={handleNewQuote}></input>
           <button type="submit" onClick={handleClick}>Añadir una nueva frase</button>
         </form>
