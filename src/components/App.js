@@ -8,8 +8,8 @@ function App () {
   const [data, setData] = useState(quotes);
   const [newQuote, setNewQuote] = useState({ quote: "", character: "" })
 
-  const htmlData = data.map(quotes => {
-    return (<li >
+  const htmlData = data.map((quotes, index) => {
+    return (<li key={index} >
       <p>{quotes.quote} - <span className='colorCharacter'>{quotes.character}</span></p>
 
     </li>)
@@ -19,7 +19,7 @@ function App () {
     setNewQuote({
       ...newQuote, [ev.target.id]: ev.target.value
     })
-    console.log(ev.target)
+
   });
 
   const handleClick = (ev) => {
@@ -41,9 +41,9 @@ function App () {
         <form className='formStyle'>
           <p>Añadir una nueva frase</p>
           <label htmlfor="quote">Frase</label>
-          <input type="text" name="quote" id="quote" onChange={handleNewQuote}></input>
+          <input type="text" name="quote" id="quote" value={newQuote.quote} onChange={handleNewQuote}></input>
           <label htmlfor="character">Personaje</label>
-          <input type="text" name="character" id="character" onChange={handleNewQuote}></input>
+          <input type="text" name="character" id="character" value={newQuote.character} onChange={handleNewQuote}></input>
           <button type="submit" onClick={handleClick}>Añadir una nueva frase</button>
         </form>
 
