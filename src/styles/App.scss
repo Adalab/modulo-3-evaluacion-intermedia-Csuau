@@ -1,6 +1,9 @@
 .styleQuote {
   list-style: none;
-  columns: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+
   li {
     border: 3px solid #3cb3a1;
     border-radius: 10px;
@@ -9,9 +12,11 @@
     padding-left: 20px;
   }
 }
+
 .colorCharacter {
   color: #d55f2c;
 }
+
 .formStyle {
   display: flex;
   justify-content: center;
@@ -22,6 +27,7 @@
   margin: 0 auto;
   color: #3cb3a1;
   padding-bottom: 30px;
+
   p {
     text-align: center;
     width: 100%;
@@ -31,7 +37,7 @@
   button {
     margin: 0 auto;
     width: 50%;
-    padding:5px;
+    padding: 5px;
     margin-top: 20px;
     border-radius: 10px;
     background-color: #3cb3a1;
@@ -40,6 +46,7 @@
     font-size: 20px;
   }
 }
+
 .titleStyle {
   text-align: center;
   color: #3cb3a1;

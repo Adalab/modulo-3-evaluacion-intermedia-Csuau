@@ -8,6 +8,8 @@ import getDataApi from '../services/fetch';
 function App () {
   const [data, setData] = useState([]);
   const [newQuote, setNewQuote] = useState({ quote: "", character: "" })
+  const [filterQuote, setFilterQuote] = useState('');
+  const [filterCharacter, setFilterCharacter] = useState('all');
 
   useEffect(() => {
     getDataApi().then((data) => {
@@ -15,19 +17,39 @@ function App () {
     });
   }, []);
 
-  const htmlData = data.map((data, index) => {
-    return (<li key={index} >
-      <p>{data.quote} - <span className='colorCharacter'>{data.character}</span></p>
-
-    </li>)
-  })
-
   const handleNewQuote = ((ev) => {
     setNewQuote({
       ...newQuote, [ev.target.id]: ev.target.value
     })
-
   });
+
+  const handleFilterQuote = (ev) => {
+    setFilterQuote(ev.target.value);
+  };
+
+  const handleFilterCharacter = (ev) => {
+    setFilterCharacter(ev.target.value);
+  };
+
+  const htmlData = data
+    .filter((item) => {
+      return item.quote.toLowerCase().includes(filterQuote.toLowerCase());
+    })
+    .filter((item) => {
+      if (filterCharacter === 'all') {
+        return true;
+      }
+      return item.character === filterCharacter;
+    })
+
+    .map((data, index) => {
+      return (<li key={index} >
+        <p>{data.quote} - <span className='colorCharacter'>{data.character}</span></p>
+
+      </li>)
+    })
+
+
 
   const handleClick = (ev) => {
     ev.preventDefault();
@@ -48,16 +70,16 @@ function App () {
             type="text"
             name="quote"
             id="quote"
-          /* value={filterQuote}
-           onChange={handleFilterQuote}*/
+            value={filterQuote}
+            onChange={handleFilterQuote}
           />
 
           <label htmlFor="character">
             Filtrar por personaje </label>
           <select
             className=""
-          /* onChange={handleFilterCharacter}
-           value={filterCharac}*/
+            onChange={handleFilterCharacter}
+            value={filterCharacter}
           >
             <option value="all">Todos</option>
             <option value="Ross">Ross</option>
